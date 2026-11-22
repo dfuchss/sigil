@@ -1,0 +1,23 @@
+From: Alice <alice@example.org>
+To: Bob <bob@example.org>
+Subject: Static signed
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature"; boundary="sig-b"
+
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--sig-b
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
+
+Signed text.
+
+--sig-b
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+AAAA
+-----END PGP SIGNATURE-----
+
+--sig-b--

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Label</key>
+	<string>__PREFIX__.helper</string>
+	<key>BundleProgram</key>
+	<string>Contents/MacOS/SigilHelper</string>
+	<key>MachServices</key>
+	<dict>
+		<!-- __PREFIX__ and __TEAM__ are substituted by the "Generate LaunchAgent plist" build phase of the Sigil target (output: <prefix>.helper.plist). -->
+		<key>__TEAM____PREFIX__.helper</key>
+		<true/>
+	</dict>
+</dict>
+</plist>

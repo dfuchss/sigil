@@ -1,0 +1,11 @@
+From: Alice <alice@example.org>
+To: Bob <bob@example.org>
+Subject: 8bit body
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+Grüße! This line has trailing spaces   
+From here on the line starts with From.
+This is a very long line that definitely exceeds the seventy-six character limit of quoted printable lines.
+Done.

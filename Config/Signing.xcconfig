@@ -1,0 +1,4 @@
+// Signing settings for all targets. The Apple Developer Team ID is personal and is NOT committed:
+// copy Local.xcconfig.example to Local.xcconfig (git-ignored) and put your Team ID there.
+// The App Group, the helper's Mach service name and its client check all derive from this team.
+#include? "Local.xcconfig"

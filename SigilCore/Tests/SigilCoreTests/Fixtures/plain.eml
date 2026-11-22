@@ -1,0 +1,14 @@
+From: Alice <alice@example.org>
+To: Bob <bob@example.org>
+Subject: Plain message
+Date: Sat, 21 Nov 2026 10:00:00 +0000
+Message-ID: <plain-1@example.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
+
+Hello Bob,
+
+this is a plain message without any OpenPGP content.
+
+Alice

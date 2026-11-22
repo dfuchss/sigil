@@ -1,0 +1,30 @@
+name: check
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    name: Check macOS
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Install tools
+        run: brew install gnupg xcodegen shellcheck
+      - name: Print versions
+        run: |
+          gpg --version | head -n 1
+          xcodegen --version
+          xcodebuild -version
+      # The Xcode build is unsigned (CODE_SIGNING_ALLOWED=NO): CI has no Team ID or certificates.
+      - name: Run checks
+        run: scripts/check.sh
