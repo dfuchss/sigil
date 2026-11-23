@@ -197,9 +197,11 @@ final class SecurityHandler: NSObject, MEMessageSecurityHandler {
             MEMessageSigner(emailAddresses: signer.emailAddresses.map { MEEmailAddress(rawString: $0) },
                             signatureLabel: signer.label, context: signer.context)
         }
+        // No signingError/encryptionError: Mail never shows their text, but builds a CertificateBanner for them that
+        // crashes Mail (CertificateBanner.swift:53 "without a valid error") when such a message is deleted.
+        // Sigil's own banner and warning box report the problem instead.
         let security = MEMessageSecurityInformation(
-            signers: signers, isEncrypted: p.isEncrypted,
-            signingError: p.signingError.map(decodingError), encryptionError: p.encryptionError.map(decodingError),
+            signers: signers, isEncrypted: p.isEncrypted, signingError: nil, encryptionError: nil,
             shouldBlockRemoteContent: p.blocksRemoteContent,
             localizedRemoteContentBlockingReason: p.remoteContentBlockingReason)
         let banner = p.banner.map {
@@ -211,11 +213,6 @@ final class SecurityHandler: NSObject, MEMessageSecurityHandler {
             signers \(signers.count), banner \(banner != nil)
             """)
         return MEDecodedMessage(data: data, securityInformation: security, context: p.context, banner: banner)
-    }
-
-    private static func decodingError(_ message: String) -> NSError {
-        NSError(domain: MEMessageSecurityError.errorDomain, code: MEMessageSecurityError.Code.decodingError.rawValue,
-                userInfo: [NSLocalizedDescriptionKey: message])
     }
 
     // MARK: MEMessageSecurityHandler
